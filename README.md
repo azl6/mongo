@@ -139,3 +139,7 @@ Podemos buscar por todos os livros que o Alex avaliou:
 ```bash
 db.books.find({"reviews.name": "Alex"})
 ```
+
+# Deletando objetos
+
+Use `deleteOne` e `deleteMany()`
