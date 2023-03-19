@@ -87,7 +87,7 @@ db.books.find({"rating": {$in: [6,7,8]}}) # Encontrará livros cujo rating seja 
 
 Suponha o seguinte objeto:
 
-```json
+```
   {
     _id: ObjectId("64165606d4a9053a6d311f7e"),
     title: '1984',
@@ -98,7 +98,7 @@ Suponha o seguinte objeto:
   {...}
 ```
 
-Podemos ter dois requerimentos para buscas nesse array:
+Podemos ter três requerimentos para buscas nesse array:
 
 - Buscar os objetos cuja lista contém o parâmetro passado:
   ```bash
@@ -108,4 +108,9 @@ Podemos ter dois requerimentos para buscas nesse array:
 - Buscar os objetos cuja lista seja **exatamente** igual ao parâmetro:
   ```bash
   db.books.find({"genre": ["fantasy"]}) # Buscará pelos objetos cuja lista "genre" seja EXATAMENTE igual à lista informada dentro dos 
+  ```
+  
+- Buscar objetos cuja lista contenha os parâmetros passados (mais de um parâmetro!):
+  ```bash
+  db.books.find({"genre": {$all: ["fantasy", "sci-fi"]}}) # Buscará pelos objetos cuja lista "genre" possua PELO MENOS fantasy e sci-fi (ambos!)
   ```
