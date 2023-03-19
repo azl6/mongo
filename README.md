@@ -82,3 +82,30 @@ Para buscarmos objetos cujos atributos satisfazem a condição passada
 ```bash
 db.books.find({"rating": {$in: [6,7,8]}}) # Encontrará livros cujo rating seja 7,8 ou 9
 ```
+
+# Buscando objetos dentro de listas
+
+Suponha o seguinte objeto:
+
+```json
+  {
+    _id: ObjectId("64165606d4a9053a6d311f7e"),
+    title: '1984',
+    rating: 6,
+    genre: ["fantasy", "horror", "comedy"]
+  }, 
+  {...},
+  {...}
+```
+
+Podemos ter dois requerimentos para buscas nesse array:
+
+- Buscar os objetos cuja lista contém o parâmetro passado:
+  ```bash
+  db.books.find({"genre": fantasy}) # Buscará pelos objetos cuja lista "genre" contêm o gênero fantasy (sim, é isso mesmo!)
+  ```
+  
+- Buscar os objetos cuja lista seja **exatamente** igual ao parâmetro:
+  ```bash
+  db.books.find({"genre": ["fantasy"]}) # Buscará pelos objetos cuja lista "genre" seja EXATAMENTE igual à lista informada dentro dos 
+  ```
