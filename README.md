@@ -15,11 +15,11 @@ db.books.insertMany([{...}, {...}, {...}])
 
 # Buscando objetos básico
 
-**Funções uxiliares:** Os métodos abaixo podem ser usados juntamente ao find:
+**Funções auxiliares:** Os métodos abaixo podem ser usados juntamente ao find:
 
-exemplos:
+Exemplos:
 
-```
+```bash
 db.books.find().count # Conta o número de retornos
 db.books.find().limit(3) # Limita a 3 retornos
 db.books.find().sort("author": 1) # 1 ASC, 0 DESC. -1 Inverte a ordem! 
@@ -73,4 +73,12 @@ Para usarmos o operador **OR**, iniciamos a query com **$or: [{...}, {...}]**
 ```bash
 db.books.find({$or: [{"rating": 6}, {"rating": 10}]}) # Encontrará livros cujo rating seja 6 ou 10
 db.books.find({$or: [{"rating": {$lte: 4}},{"rating": {$gte: 8}}]}) # Encontrará livros cujo rating seja <= 4 ou >= 8
+```
+
+Operador **IN**:
+
+Para buscarmos objetos cujos atributos satisfazem a condição passada
+
+```bash
+db.books.find({"rating": {$in: [6,7,8]}}) # Encontrará livros cujo rating seja 7,8 ou 9
 ```
