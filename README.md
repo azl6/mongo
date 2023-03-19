@@ -143,3 +143,27 @@ db.books.find({"reviews.name": "Alex"})
 # Deletando objetos
 
 Use `deleteOne` e `deleteMany()`
+
+# Atualizando objetos
+
+Para atualizar **UM** objeto, usar o `updateOne({}, {})`, que recebe dois argumentos: 
+- O primeiro sendo as informações dos objetos a serem atualizados
+- O segundo sendo os campos a serem atualizados, com o **$set**
+
+```bash
+db.books.update({"_id": ObjectId("64165606d4a9053a6d311f7e")}, {$set: {"rating": 10, "title": "1984 V2"}}) # Atualizará o objeto com o ID informado, setando o rating para 10 e o title para "1984 V2"
+```
+
+Para atualizar **MÚLTIPLOS** objetos, usar o `updateMany({}, {})`:
+
+```bash
+db.books.update({"author": "Alex"}, {$set: {"author": "Alex Rodrigues"}}) # Atualizará o campo author para "Alex Rodrigues" em todos os objetos cujo campo author == Alex
+
+# Set e Inc
+
+Ao atualizar o objeto, podemos usar o `$set` para setar valores e o `$inc` para incrementar valores
+
+```bash
+db.books.updateOne({"_id": ObjectId("64165606d4a9053a6d311f7e")}, {$set: {"rating": 10}}) # Setará o rating do objeto para 10
+db.books.updateOne({"_id": ObjectId("64164f4fd4a9053a6d311f7c")}, {$inc: {"rating": +3}}) # Incrementará o rating do objeto em 3
+```
