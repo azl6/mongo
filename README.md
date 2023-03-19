@@ -114,3 +114,28 @@ Podemos ter três requerimentos para buscas nesse array:
   ```bash
   db.books.find({"genre": {$all: ["fantasy", "sci-fi"]}}) # Buscará pelos objetos cuja lista "genre" possua PELO MENOS fantasy e sci-fi (ambos!)
   ```
+
+# Referenciando objetos em sub listas
+
+Suponha o seguinte objeto:
+
+```
+  {
+    _id: ObjectId("64165606d4a9053a6d311f7e"),
+    title: '1984',
+    rating: 6,
+    genre: ["fantasy", "horror", "comedy"],
+    reviews: [
+      {
+        "name": "Alex",
+        "rating": 10
+      }
+    ]
+  }
+```
+
+Podemos buscar por todos os livros que o Alex avaliou:
+
+```bash
+db.books.find({"reviews.name": "Alex"})
+```
